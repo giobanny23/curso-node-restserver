@@ -9,7 +9,10 @@ const usuariosGet =async(req=request, res = response) => {
 
 
     //const {q, nombre ='No name', apikey,page = 1, limit} = req.query;
-    const usuarios = await Usuario.find();
+    const {limite = 2, desde= 0} = req.query;    
+    const usuarios = await Usuario.find()
+        .skyp(Number(desde))
+        .limit(Number(limite));
 
     res.json({
         usuarios
