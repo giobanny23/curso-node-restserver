@@ -23,13 +23,13 @@ const validarJWT =async(req=request,res =repsponse, next) =>{
        if(!usuario){
            return res.status(401).json({
                msg:'Token No valido - usuario no existe en la BD'
-           })
+           });
        }
         //Verficar si uid, tenga estado true
         if(!usuario.estado){
             return res.status(401).json({
                 msg: 'Token no valido- usuario con estado false'
-            })
+            });
         }
         req.usuario = usuario;
         next();
@@ -38,7 +38,7 @@ const validarJWT =async(req=request,res =repsponse, next) =>{
         console.log(error);
         res.status(401).json({
             msg:'Token no valido'
-        })
+        });
     }
 }
 
